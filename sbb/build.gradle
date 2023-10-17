@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.16'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.mysite'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	// springboot debtool : debelopmentOnly => 개발환경에서만 적용됨. 운영 배포환경에선 제외됨
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// 롬복
+	compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+	
+	// H2데이터베이스
+	// runtimeOnly = 런타임시에만 필요한 경우사용
+	// compileOnly = 컴파일 시에만 필요한 경우 사용
+    runtimeOnly 'com.h2database:h2'
+    
+    // JPA환경설정
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
